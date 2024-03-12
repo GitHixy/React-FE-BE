@@ -1,0 +1,32 @@
+GET http://localhost:3030/authors
+
+####
+
+POST http://localhost:3030/authors
+Content-Type: application/json
+
+{
+    "name": "Giggi",
+    "surname": "IsBoomer",
+    "email": "giggiolone@gmail.com",
+    "dateOfBirth": "17/12/1876",
+    "avatar": "Giggissimo"
+}
+
+####
+
+GET http://localhost:3030/authors/65f0650dc95202c79d1b1982
+
+####
+
+PATCH http://localhost:3030/authors/65f0650dc95202c79d1b1982
+Content-Type: application/json
+
+{
+    "avatar": "Hixyllian"
+}
+
+
+####
+
+DELETE http://localhost:3030/authors/65f06bf840f1ecd677688d5d
