@@ -9,8 +9,8 @@ const initialState = {
   totalPosts: 0,
 };
 
-export const getAllPosts = createAsyncThunk("posts/GETPOSTS", async () => {
-  return await client.get("/post");
+export const getAllPosts = createAsyncThunk("/", async () => {
+  return await client.get("/blogPosts");
 });
 
 const postsSlice = createSlice({

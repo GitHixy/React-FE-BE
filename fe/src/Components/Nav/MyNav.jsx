@@ -6,31 +6,21 @@ import OctoBooks from '../../Assets/OctoBooks.webp'
 
 function MyNav() {
   return (
-    <Navbar expand="lg" className="bg-secondary">
+    <Navbar expand="lg" className="bg-dark text-white">
       <Container>       
-        <Navbar.Brand href="#home"><img
+        <Navbar.Brand href="#home" className='text-white'><img
             alt=""
             src= {OctoBooks}
             width="100" 
             height="100" 
-            className="d-inline-block  rounded-circle"
+            className="d-inline-block  rounded-circle "
           /> OctoBooks</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link href="#home" className='text-white'>Home</Nav.Link>
+            <Nav.Link href="#link" className='text-white'>Link</Nav.Link>
+            <Nav.Link href="#link" className='text-white'>About</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

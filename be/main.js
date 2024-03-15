@@ -1,3 +1,4 @@
+const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
@@ -14,7 +15,7 @@ const blogPostRoute = require('./routes/blogPost');
 
 
 // Middleware
-
+app.use(cors());
 app.use(express.json());
 app.use('/', authorsRoute);
 app.use('/', blogPostRoute);
