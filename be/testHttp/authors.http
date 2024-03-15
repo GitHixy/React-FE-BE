@@ -6,11 +6,11 @@ POST http://localhost:3030/authors
 Content-Type: application/json
 
 {
-    "name": "Giggi",
-    "surname": "IsBoomer",
-    "email": "giggiolone@gmail.com",
-    "dateOfBirth": "17/12/1876",
-    "avatar": "Giggissimo"
+    "name": "",
+    "surname": "",
+    "email": "",
+    "dateOfBirth": "",
+    "avatar": ""
 }
 
 ####

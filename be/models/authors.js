@@ -17,7 +17,7 @@ const AuthorSchema = new mongoose.Schema({
         max: 255
     },
     dateOfBirth: {
-        type: String,
+        type: Date,
         required: true
     },
     avatar: {

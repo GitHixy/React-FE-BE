@@ -36,14 +36,7 @@ router.get("/authors/:id", async (req, res) => {
 })
 
 router.post("/authors", async (req, res) => {
-  const newAuthor = new AuthorsModel({
-    name: req.body.name,
-    surname: req.body.surname,
-    email: req.body.email,
-    dateOfBirth: req.body.dateOfBirth,
-    avatar: req.body.avatar,
-  });
-
+  const newAuthor = new AuthorsModel(req.body);
   try {
     const authorToSave = await newAuthor.save();
     res.status(201).send({
