@@ -4,13 +4,14 @@ import { Provider } from 'react-redux';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import App from './App';
 
+import postsReducer from './redux/BlogPosts/blogPostsSlice'
 
-const reducer = combineReducers({
-
+const rootReducer = combineReducers({
+    postsData: postsReducer,
 });
 
 const store = configureStore({
-  reducer: {}
+  reducer: rootReducer
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
