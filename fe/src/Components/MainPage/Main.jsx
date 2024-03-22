@@ -5,6 +5,7 @@ import Post from "../Post/Post";
 import {useDispatch, useSelector} from 'react-redux';
 import { allPosts, getAllPosts } from "../../redux/BlogPosts/blogPostsSlice";
 import { Row } from "react-bootstrap";
+import BlogPostForm from "../Form/Form";
 
 
 
@@ -37,6 +38,7 @@ const Main = () => {
     return(
         <>
         <MyNav/>
+        <BlogPostForm />
         <div className="container">
             <Row>
         {posts && (displayPosts(posts))}

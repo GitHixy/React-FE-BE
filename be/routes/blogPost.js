@@ -1,7 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const BlogPostModel = require("../models/blogPost");
+const cloudUpload = require('../cloudConfig');
 
+
+
+router.post("/blogPosts/cloudUploadImg", cloudUpload.single('uploadImg'), async (req, res) => {
+    try {
+        res.status(200).json({source: req.file.path })
+    } catch (e) {
+        res.status(500).send({
+            statusCode: 500,
+            message: "File upload error",
+          });
+    }
+})
 
 router.get("/blogPosts", async (req, res) =>{
     try {
