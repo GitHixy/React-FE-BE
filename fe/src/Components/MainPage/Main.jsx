@@ -27,7 +27,7 @@ const Main = () => {
                 key={post._id}
                 title={post.title}
                 author={post.author.name}
-                imgUrl={post.author.avatar}
+                imgUrl={post.cover}
                 content={post.content}
                 category={post.category}
                 readTime={`${post.readTime.value} ${post.readTime.unit}`}

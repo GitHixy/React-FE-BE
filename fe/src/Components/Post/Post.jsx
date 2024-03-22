@@ -10,7 +10,7 @@ const Post = ({ title, author, imgUrl, content, readTime, category }) => {
         <h4>By {author}</h4>
       </div>
       <div className="card-body">
-        <img src= {imgUrl} alt="img" className='d-none' />
+        <img src= {imgUrl} alt="img" className='w-100'/>
         <h4>Description:</h4>
         <p>{content}</p>
         

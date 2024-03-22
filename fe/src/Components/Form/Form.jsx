@@ -1,12 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
+import {useDispatch} from 'react-redux';
+import { getAllPosts } from '../../redux/BlogPosts/blogPostsSlice';
 
 const BlogPostForm = ({ onSubmit }) => {
-
+    const formRef = useRef(null);
     const [file, setFile] = useState(null);
     const [formData, setFormData] = useState({});
+    const dispatch = useDispatch();
 
     console.log(file);
     console.log(formData);
@@ -22,6 +25,21 @@ const BlogPostForm = ({ onSubmit }) => {
             ...formData,
             [name]: value
         })
+    };
+    
+    const resetForm = () => { 
+        setFormData({
+            category: '',
+            title: '',
+            content: '',
+            author: { name: '' },
+            readTime: { value: '', unit: '' },
+        });
+        setFile(null);
+        if (formRef.current) {
+            
+            formRef.current.reset();
+        }
     };
 
     const uploadFile = async () => {
@@ -52,7 +70,10 @@ const BlogPostForm = ({ onSubmit }) => {
                         'Content-Type': 'application/json'
                     }
                     });
-                    alert(response.data);
+                    alert('Post submitted correctly!');
+                    resetForm();
+                    dispatch(getAllPosts());
+
             } catch (e) {
                 console.log(e.message)
             }
@@ -63,10 +84,11 @@ const BlogPostForm = ({ onSubmit }) => {
         <Container>
             <Row className="justify-content-md-center">
                 <Col md={8}>
-                    <Form onSubmit={submitBlogPost} encType='multipart/form-data'>
+                    <Form ref={formRef} onSubmit={submitBlogPost} encType='multipart/form-data'>
                         <Form.Group className="mb-3">
                             <Form.Label>Category</Form.Label>
                             <Form.Control
+                                
                                 type="text"
                                 name="category"
                                 onChange={handleInputChange}
@@ -76,6 +98,7 @@ const BlogPostForm = ({ onSubmit }) => {
                         <Form.Group className="mb-3">
                             <Form.Label>Title</Form.Label>
                             <Form.Control
+                            
                                 type="text"
                                 name="title"                                
                                 onChange={handleInputChange}
@@ -85,6 +108,7 @@ const BlogPostForm = ({ onSubmit }) => {
                         <Form.Group className="mb-3">
                             <Form.Label>Cover Image</Form.Label>
                             <Form.Control
+                                
                                 type="file"
                                 name="uploadImg"
                                 onChange={handleFileChange}
@@ -94,6 +118,7 @@ const BlogPostForm = ({ onSubmit }) => {
                         <Form.Group className="mb-3">
                             <Form.Label>Read Time Value</Form.Label>
                             <Form.Control
+                            
                                 type="number"
                                 name="readTime.value"
                                 onChange={handleInputChange}
@@ -103,6 +128,7 @@ const BlogPostForm = ({ onSubmit }) => {
                         <Form.Group className="mb-3">
                             <Form.Label>Read Time Unit</Form.Label>
                             <Form.Control
+                            
                                 type="text"
                                 name="readTime.unit"
                                 onChange={handleInputChange}
@@ -112,6 +138,7 @@ const BlogPostForm = ({ onSubmit }) => {
                         <Form.Group className="mb-3">
                             <Form.Label>Author Name</Form.Label>
                             <Form.Control
+                            
                                 type="text"
                                 name="author.name"
                                 onChange={handleInputChange}
@@ -122,6 +149,7 @@ const BlogPostForm = ({ onSubmit }) => {
                         <Form.Group className="mb-3">
                             <Form.Label>Content</Form.Label>
                             <Form.Control
+                            
                                 as="textarea"
                                 rows={3}
                                 name="content"
