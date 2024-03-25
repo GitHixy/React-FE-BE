@@ -140,7 +140,7 @@ const BlogPostForm = ({ onSubmit }) => {
                             <Form.Control
                             
                                 type="text"
-                                name="author.name"
+                                name="author"
                                 onChange={handleInputChange}
                                 required
                             />

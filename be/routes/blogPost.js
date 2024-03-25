@@ -2,12 +2,13 @@ const express = require('express');
 const router = express.Router();
 const BlogPostModel = require("../models/blogPost");
 const cloudUpload = require('../cloudConfig');
+const AuthorSchema = require('../models/authors')
 
 
 
 router.post("/blogPosts/cloudUploadImg", cloudUpload.single('uploadImg'), async (req, res) => {
     try {
-        res.status(200).json({source: req.file.path })
+        await res.status(200).json({source: req.file.path })
     } catch (e) {
         res.status(500).send({
             statusCode: 500,
@@ -17,8 +18,13 @@ router.post("/blogPosts/cloudUploadImg", cloudUpload.single('uploadImg'), async 
 })
 
 router.get("/blogPosts", async (req, res) =>{
+    const {page = 1, pageSize = 10} = req.query;
+
     try {
-        const blogPost = await BlogPostModel.find();
+        const blogPost = await BlogPostModel.find()
+        .populate('author')
+        .limit(pageSize)
+        .skip((page -1 ) * pageSize)
         res.status(200).send(blogPost);
       } catch (e) {
         res.status(500).send({
@@ -50,7 +56,9 @@ router.get("/blogPosts/:id", async (req, res) => {
 });
 
 router.post("/blogPosts", async (req, res) => {
-    const newPost = new BlogPostModel(req.body);  
+    const author = await AuthorSchema.findOne({ _id: req.body.author });
+    const newPostBody = {...req.body, author: author._id}
+    const newPost = new BlogPostModel(newPostBody);  
     try {
       const postToSave = await newPost.save();
       res.status(201).send({

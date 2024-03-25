@@ -22,11 +22,11 @@ const Main = () => {
     }, [posts]);
 
     const displayPosts = (posts) => {
-         return posts.map((post) => (
+         return posts.map((post, i) => (
             <Post 
-                key={post._id}
+                key={i}
                 title={post.title}
-                author={post.author.name}
+                author={`${post.author.name} ${post.author.surname}`}
                 imgUrl={post.cover}
                 content={post.content}
                 category={post.category}
